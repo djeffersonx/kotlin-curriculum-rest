@@ -25,7 +25,6 @@ abstract class AbstractJpaEntity<T : Serializable> {
         other ?: return false
 
         if (this === other) return true
-
         if (javaClass != ProxyUtils.getUserClass(other)) return false
 
         other as AbstractJpaEntity<*>
