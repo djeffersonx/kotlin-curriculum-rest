@@ -1,7 +1,6 @@
 package br.com.djefferson.model
 
-import br.com.djefferson.model.generics.AbstractJpaEntity
-import java.util.*
+import br.com.djefferson.model.base.BaseEntity
 import javax.persistence.*
 
 @Entity
@@ -9,6 +8,6 @@ import javax.persistence.*
 data class State(
 
         @Column(name = "name", nullable = false, length = 255)
-        val name: String
+        val name: String = ""
 
-) : AbstractJpaEntity<Long>()
+) : BaseEntity<Long>()

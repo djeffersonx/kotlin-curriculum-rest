@@ -1,5 +1,6 @@
-package br.com.djefferson.model.generics
+package br.com.djefferson.model.base
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import org.springframework.data.util.ProxyUtils
 import java.io.Serializable
 import javax.persistence.GeneratedValue
@@ -7,7 +8,7 @@ import javax.persistence.Id
 import javax.persistence.MappedSuperclass
 
 @MappedSuperclass
-abstract class AbstractJpaEntity<T : Serializable> {
+abstract class BaseEntity<T : Serializable> {
 
     @Id
     @GeneratedValue
@@ -17,8 +18,10 @@ abstract class AbstractJpaEntity<T : Serializable> {
         return id
     }
 
+    @JsonIgnore
     fun isInsert() = id == null
 
+    @JsonIgnore
     fun isUpdate() = id != null
 
     override fun equals(other: Any?): Boolean {
@@ -27,7 +30,7 @@ abstract class AbstractJpaEntity<T : Serializable> {
         if (this === other) return true
         if (javaClass != ProxyUtils.getUserClass(other)) return false
 
-        other as AbstractJpaEntity<*>
+        other as BaseEntity<*>
 
         return if (null == this.getId()) false else this.getId() == other.getId()
     }

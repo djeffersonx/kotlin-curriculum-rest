@@ -1,6 +1,6 @@
 package br.com.djefferson.model
 
-import br.com.djefferson.model.generics.AbstractJpaEntity
+import br.com.djefferson.model.base.BaseEntity
 import javax.persistence.*
 
 @Entity
@@ -8,9 +8,9 @@ import javax.persistence.*
 data class Skill(
 
         @Column(name = "name", nullable = false, length = 255)
-        val name: String,
+        val name: String = "",
 
         @Column(name = "level", nullable = false, length = 255)
-        val level: Integer
+        val level: Int = 1
 
-) : AbstractJpaEntity<Long>()
+) : BaseEntity<Long>()

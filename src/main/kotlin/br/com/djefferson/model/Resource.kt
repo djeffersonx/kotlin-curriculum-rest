@@ -1,6 +1,6 @@
 package br.com.djefferson.model
 
-import br.com.djefferson.model.generics.AbstractJpaEntity
+import br.com.djefferson.model.base.BaseEntity
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import java.util.*
 import javax.persistence.*
@@ -10,24 +10,24 @@ import javax.persistence.*
 data class Resource(
 
         @Column(name = "name", nullable = false, length = 255)
-        val name: String,
+        val name: String = "",
 
         @Temporal(TemporalType.DATE)
         @Column(name = "datebirth", nullable = false)
-        val dateBirth: Date,
+        val dateBirth: Date? = null,
 
         @ManyToOne
         @JoinColumn(name = "idcity", nullable = false, foreignKey = ForeignKey(name = "fkresourceidcity"))
-        val city: City,
+        val city: City? = null,
 
         @JsonManagedReference
         @ManyToMany(cascade = [CascadeType.ALL])
         @JoinTable(name = "resource_skill", joinColumns = [JoinColumn(name = "idresource")], inverseJoinColumns = [JoinColumn(name = "idskill")])
-        val skills: Set<Skill>,
+        val skills: Set<Skill> = setOf(),
 
         @JsonManagedReference
         @ManyToMany(cascade = [CascadeType.ALL])
         @JoinTable(name = "resource_experience", joinColumns = [JoinColumn(name = "idresource")], inverseJoinColumns = [JoinColumn(name = "idexperience")])
-        val experiences: Set<Experience>
+        val experiences: Set<Experience> = setOf()
 
-) : AbstractJpaEntity<Long>()
+) : BaseEntity<Long>()

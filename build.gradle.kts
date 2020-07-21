@@ -17,6 +17,7 @@ repositories {
 
 dependencies {
 	runtimeOnly("com.h2database:h2")
+	implementation("org.springdoc:springdoc-openapi-ui:1.4.3")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")

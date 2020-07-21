@@ -1,7 +1,6 @@
 package br.com.djefferson.model
 
-import br.com.djefferson.model.generics.AbstractJpaEntity
-import java.util.*
+import br.com.djefferson.model.base.BaseEntity
 import javax.persistence.*
 
 @Entity
@@ -9,10 +8,10 @@ import javax.persistence.*
 data class City(
 
         @Column(name = "name", nullable = false, length = 255)
-        val name: String,
+        val name: String = "",
 
         @ManyToOne
         @JoinColumn(name = "idstate", nullable = false, foreignKey = ForeignKey(name = "fkcityidstate"))
-        val state: State
+        val state: State? = null
 
-) : AbstractJpaEntity<Long>()
+) : BaseEntity<Long>()
