@@ -12,6 +12,6 @@ data class City(
 
         @ManyToOne
         @JoinColumn(name = "idstate", nullable = false, foreignKey = ForeignKey(name = "fkcityidstate"))
-        val state: State? = null
+        val state: State? = State()
 
 ) : BaseEntity<Long>()

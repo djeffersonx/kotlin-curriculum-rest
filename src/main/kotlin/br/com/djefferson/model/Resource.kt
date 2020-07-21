@@ -18,7 +18,7 @@ data class Resource(
 
         @ManyToOne
         @JoinColumn(name = "idcity", nullable = false, foreignKey = ForeignKey(name = "fkresourceidcity"))
-        val city: City? = null,
+        val city: City? = City(),
 
         @JsonManagedReference
         @ManyToMany(cascade = [CascadeType.ALL])
